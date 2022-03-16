@@ -1,18 +1,17 @@
 
 import configureStore from './store/configureStore';
 
-import * as actions  from './store/bugs';
+import * as bugActions  from './store/bugs';
+import * as projectActions from './store/projects'
 
 const store = configureStore();
-
-console.log('store: ', store)
 
 store.subscribe(() => {
     console.log("Store Changed: ", store.getState())
 })
 
-store.dispatch(actions.bugAdded({ description: 'Bug1' }));
+store.dispatch(bugActions.bugAdded({ description: 'Bug1' }));
+store.dispatch(bugActions.bugResolved({ id: 1 })); 
 
-store.dispatch(actions.bugResolved({ id: 1 }));
-
-console.log(store.getState())
+store.dispatch(projectActions.projectAdded({ description: 'Project1' }));
+store.dispatch(projectActions.projectCompleted({ id: 1 })); 
